@@ -4,36 +4,36 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 2192450021786810173
-    second: Boss 0
+    second: Enemies_0
   - first:
       213: -7537196482120660328
-    second: Boss 1
+    second: Enemies_1
   - first:
       213: -860468679390908754
-    second: Boss 2
+    second: Enemies_2
   - first:
       213: -7945901444079236628
-    second: Boss Hit
+    second: Enemies_3
   - first:
       213: -8421458170528590454
-    second: Enemy C
+    second: Enemies_4
   - first:
       213: -1147401495359466748
-    second: Enemy B
+    second: Enemies_5
   - first:
       213: 8414478535512612329
-    second: Enemy A
+    second: Enemies_6
   - first:
       213: 3714015224569861163
-    second: Enemy C Hit
+    second: Enemies_7
   - first:
       213: -7844560889915226194
-    second: Enemy B Hit
+    second: Enemies_8
   - first:
       213: 4326287474489854147
-    second: Enemy A Hit
+    second: Enemies_9
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -54,6 +54,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -92,6 +93,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -177,11 +179,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss 0
+      name: Enemies_0
       rect:
         serializedVersion: 2
         x: 0
@@ -202,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss 1
+      name: Enemies_1
       rect:
         serializedVersion: 2
         x: 67
@@ -223,7 +249,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss 2
+      name: Enemies_2
       rect:
         serializedVersion: 2
         x: 134
@@ -244,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Hit
+      name: Enemies_3
       rect:
         serializedVersion: 2
         x: 0
@@ -265,7 +291,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy C
+      name: Enemies_4
       rect:
         serializedVersion: 2
         x: 67
@@ -286,7 +312,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy B
+      name: Enemies_5
       rect:
         serializedVersion: 2
         x: 100
@@ -297,7 +323,13 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -12, y: 12}
+        - {x: -12, y: 6}
+        - {x: -1, y: -12}
+        - {x: 1, y: -12}
+        - {x: 12, y: 6}
+        - {x: 12, y: 12}
       tessellationDetail: 0
       bones: []
       spriteID: 403d85e4b6c9310f0800000000000000
@@ -307,7 +339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy A
+      name: Enemies_6
       rect:
         serializedVersion: 2
         x: 125
@@ -328,7 +360,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy C Hit
+      name: Enemies_7
       rect:
         serializedVersion: 2
         x: 67
@@ -349,7 +381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy B Hit
+      name: Enemies_8
       rect:
         serializedVersion: 2
         x: 100
@@ -360,7 +392,13 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -12, y: 12}
+        - {x: -12, y: 5}
+        - {x: -1, y: -12}
+        - {x: 1, y: -12}
+        - {x: 12, y: 5}
+        - {x: 12, y: 12}
       tessellationDetail: 0
       bones: []
       spriteID: ea74ea1de65822390800000000000000
@@ -370,7 +408,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy A Hit
+      name: Enemies_9
       rect:
         serializedVersion: 2
         x: 125
@@ -400,6 +438,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Enemies_0: 2192450021786810173
+      Enemies_1: -7537196482120660328
+      Enemies_2: -860468679390908754
+      Enemies_3: -7945901444079236628
+      Enemies_4: -8421458170528590454
+      Enemies_5: -1147401495359466748
+      Enemies_6: 8414478535512612329
+      Enemies_7: 3714015224569861163
+      Enemies_8: -7844560889915226194
+      Enemies_9: 4326287474489854147
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
