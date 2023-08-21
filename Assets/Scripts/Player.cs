@@ -13,15 +13,21 @@ public class Player : MonoBehaviour
     public int life;
     public int score;
     public float speed;
-    public float power;
+    public int maxPower;
+    public int power;
+    public int maxBoom;
+    public int boom;
     public float maxShotDelay;
     public float curShotDelay;
 
-    public GameObject BulletObjA;
-    public GameObject BulletObjB;
+    public GameObject bulletObjA;
+    public GameObject bulletObjB;
+    public GameObject boomEffect;
 
     public GameManager manager;
     public bool isHit;
+    public bool isBoomTime;
+
     Animator anim;
 
     void Awake()
@@ -33,6 +39,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+        Boom();
         Reload();
     }
 
@@ -66,22 +73,22 @@ public class Player : MonoBehaviour
 
         switch (power) {
             case 1:
-                GameObject bullet = Instantiate(BulletObjA, transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(bulletObjA, transform.position, Quaternion.identity);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-                rigid.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
+                rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 2:
-                GameObject bulletR = Instantiate(BulletObjA, transform.position + Vector3.right * 0.1f, Quaternion.identity);
-                GameObject bulletL = Instantiate(BulletObjA, transform.position + Vector3.left * 0.1f, Quaternion.identity);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, Quaternion.identity);
+                GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, Quaternion.identity);
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 3:
-                GameObject bulletRR = Instantiate(BulletObjA, transform.position + Vector3.right * 0.35f, Quaternion.identity);
-                GameObject bulletC = Instantiate(BulletObjB, transform.position, Quaternion.identity);
-                GameObject bulletLL = Instantiate(BulletObjA, transform.position + Vector3.left * 0.35f, Quaternion.identity);
+                GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.35f, Quaternion.identity);
+                GameObject bulletC = Instantiate(bulletObjB, transform.position, Quaternion.identity);
+                GameObject bulletLL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.35f, Quaternion.identity);
                 Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidC = bulletC.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
@@ -99,10 +106,42 @@ public class Player : MonoBehaviour
         curShotDelay += Time.deltaTime;
     }
 
+    void Boom()
+    {
+        if (!Input.GetButton("Fire2"))
+            return;
+
+        if (isBoomTime)
+            return;
+
+        if (boom == 0)
+            return;
+
+        boom--;
+        isBoomTime = true;
+        manager.UpdateBoomIcon(boom);
+        //effect visible
+        boomEffect.SetActive(true);
+        Invoke("OffBoomEffect", 3f);
+        //remove enemy
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++) {
+            Enemy enemyLogic = enemies[i].GetComponent<Enemy>();
+            enemyLogic.OnHit(1000);
+        }
+        //remove enemy bullet
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        for (int i = 0; i < bullets.Length; i++) {
+            Destroy(bullets[i]);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Border") {
-            switch (collision.gameObject.name) {
+        if (collision.gameObject.tag == "Border")
+        {
+            switch (collision.gameObject.name)
+            {
                 case "Top":
                     isTouchTop = true;
                     break;
@@ -117,7 +156,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet") {
+        else if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        {
 
             if (isHit)
                 return;
@@ -126,7 +166,7 @@ public class Player : MonoBehaviour
             life--;
             manager.UpdateLifeIcon(life);
 
-            if(life == 0) {
+            if (life == 0) {
                 manager.GameOver();
             }
             else {
@@ -136,6 +176,36 @@ public class Player : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.tag == "Item") {
+            Item item = collision.gameObject.GetComponent<Item>();
+
+            switch (item.type) {
+                case "Coin":
+                    score += 1000;
+                    break;
+                case "Power":
+                    if (power == maxPower)
+                        score += 500;
+                    else
+                        power++;
+                    break;
+                case "Boom":
+                    if (boom == maxBoom)
+                        score += 500;
+                    else {
+                        boom++;
+                        manager.UpdateBoomIcon(boom);
+                    }
+                    break;
+            }
+            Destroy(collision.gameObject);
+        }
+    }
+
+    void OffBoomEffect()
+    {
+        boomEffect.SetActive(false);
+        isBoomTime = false;
     }
 
     void OnTriggerExit2D(Collider2D collision)

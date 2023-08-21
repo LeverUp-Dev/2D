@@ -155,6 +155,9 @@ MonoBehaviour:
   - {fileID: 3714015224569861163, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   maxShotDelay: 3
   curShotDelay: 0
-  BulletObjA: {fileID: 5565462762865260653, guid: 975eac0179826784d8ee16aaec468c56, type: 3}
-  BulletObjB: {fileID: 5565462762865260653, guid: e5e3437667237a6499bd2184410a650a, type: 3}
+  bulletObjA: {fileID: 5565462762865260653, guid: 975eac0179826784d8ee16aaec468c56, type: 3}
+  bulletObjB: {fileID: 5565462762865260653, guid: e5e3437667237a6499bd2184410a650a, type: 3}
+  itemCoin: {fileID: 8576542704500854573, guid: 5fdc0f8e88c309847b584eee172f1ac7, type: 3}
+  itemPower: {fileID: 3978026278309552893, guid: 0c1557c99c4b823428bd0034636b07aa, type: 3}
+  itemBoom: {fileID: 465381887408860081, guid: bac92df02d7e14d47b2fd727435f4d80, type: 3}
   player: {fileID: 0}

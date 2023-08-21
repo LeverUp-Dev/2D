@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public Text scoreTxt;
     public Image[] lifeImg;
+    public Image[] boomImg;
     public GameObject gameOverSet;
 
     void Update()
@@ -54,15 +55,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateLifeIcon(int Life)
+    public void UpdateLifeIcon(int life)
     {
         //UI life init disable
         for (int i = 0; i < 3; i++) {
             lifeImg[i].color = new Color(1, 1, 1, 0);
         }
         //UI life active
-        for (int i = 0; i < Life; i++) {
+        for (int i = 0; i < life; i++) {
             lifeImg[i].color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public void UpdateBoomIcon(int boom)
+    {
+        //UI life init disable
+        for (int i = 0; i < 3; i++) {
+            boomImg[i].color = new Color(1, 1, 1, 0);
+        }
+        //UI life active
+        for (int i = 0; i < boom; i++) {
+            boomImg[i].color = new Color(1, 1, 1, 1);
         }
     }
 
