@@ -4,18 +4,59 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public string enemyName;
     public float speed;
     public int health;
     public Sprite[] sprites;
 
+    public float maxShotDelay;
+    public float curShotDelay;
+
+    public GameObject BulletObjA;
+    public GameObject BulletObjB;
+    public GameObject player;
+
     SpriteRenderer spriteRenderer;
-    Rigidbody2D rigid;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * speed;
+    }
+
+    void Update()
+    {
+        Fire();
+        Reload();
+    }
+
+    void Fire()
+    {
+        if (curShotDelay < maxShotDelay)
+            return;
+
+        if(enemyName == "S") {
+            GameObject bullet = Instantiate(BulletObjA, transform.position, Quaternion.identity);
+            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            Vector3 dirVec = player.transform.position - transform.position;
+            rigid.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
+        }
+        else if (enemyName == "L") {
+            GameObject bulletR = Instantiate(BulletObjB, transform.position + Vector3.right * 0.3f, Quaternion.identity);
+            Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
+            GameObject bulletL = Instantiate(BulletObjB, transform.position + Vector3.left * 0.3f, Quaternion.identity);
+            Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
+            Vector3 dirVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
+            Vector3 dirVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
+            rigidR.AddForce(dirVecR.normalized * 10, ForceMode2D.Impulse);
+            rigidL.AddForce(dirVecL.normalized * 10, ForceMode2D.Impulse);
+        }
+
+        curShotDelay = 0;
+    }
+
+    void Reload()
+    {
+        curShotDelay += Time.deltaTime;
     }
 
     void OnHit(int dmg)

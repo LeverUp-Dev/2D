@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public GameObject BulletObjA;
     public GameObject BulletObjB;
 
+    public GameManager manager;
+
     Animator anim;
 
     void Awake()
@@ -47,8 +49,7 @@ public class Player : MonoBehaviour
 
         transform.position = curPos + nextPos;
 
-        if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
-        {
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal")) {
             anim.SetInteger("input", (int)h);
         }
     }
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
             case 1:
                 GameObject bullet = Instantiate(BulletObjA, transform.position, Quaternion.identity);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-                rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                rigid.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
                 break;
             case 2:
                 GameObject bulletR = Instantiate(BulletObjA, transform.position + Vector3.right * 0.1f, Quaternion.identity);
@@ -113,6 +114,10 @@ public class Player : MonoBehaviour
                     isTouchLeft = true;
                     break;
             }
+        }
+        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet") {
+            manager.RespawnPlayer();
+            gameObject.SetActive(false);
         }
     }
 
