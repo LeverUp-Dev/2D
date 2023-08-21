@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public string enemyName;
+    public int enemyScore;
     public float speed;
     public int health;
     public Sprite[] sprites;
@@ -38,7 +39,7 @@ public class Enemy : MonoBehaviour
             GameObject bullet = Instantiate(BulletObjA, transform.position, Quaternion.identity);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector3 dirVec = player.transform.position - transform.position;
-            rigid.AddForce(dirVec.normalized * 10, ForceMode2D.Impulse);
+            rigid.AddForce(dirVec.normalized * 5, ForceMode2D.Impulse);
         }
         else if (enemyName == "L") {
             GameObject bulletR = Instantiate(BulletObjB, transform.position + Vector3.right * 0.3f, Quaternion.identity);
@@ -47,8 +48,8 @@ public class Enemy : MonoBehaviour
             Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
             Vector3 dirVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
             Vector3 dirVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
-            rigidR.AddForce(dirVecR.normalized * 10, ForceMode2D.Impulse);
-            rigidL.AddForce(dirVecL.normalized * 10, ForceMode2D.Impulse);
+            rigidR.AddForce(dirVecR.normalized * 5, ForceMode2D.Impulse);
+            rigidL.AddForce(dirVecL.normalized * 5, ForceMode2D.Impulse);
         }
 
         curShotDelay = 0;
@@ -66,6 +67,8 @@ public class Enemy : MonoBehaviour
         Invoke("ReturnSprite", 0.1f);
 
         if(health <= 0) {
+            Player playerLogic = player.GetComponent<Player>();
+            playerLogic.score += enemyScore;
             Destroy(gameObject);
         }
     }
