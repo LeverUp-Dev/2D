@@ -1758,7 +1758,7 @@ MonoBehaviour:
   - {fileID: 940829644}
   - {fileID: 2102493649}
   - {fileID: 1399893132}
-  maxSpawnDelay: 2
+  maxSpawnDelay: 0
   curSpawnDelay: 0
   player: {fileID: 1430593943}
   scoreTxt: {fileID: 1531392046}
@@ -1772,6 +1772,8 @@ MonoBehaviour:
   - {fileID: 898495515}
   gameOverSet: {fileID: 1323830384}
   objManager: {fileID: 1398145797}
+  spawnIndex: 0
+  spawnEnd: 0
 --- !u!1 &1137937866
 GameObject:
   m_ObjectHideFlags: 0
