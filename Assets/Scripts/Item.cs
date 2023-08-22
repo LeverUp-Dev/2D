@@ -7,9 +7,13 @@ public class Item : MonoBehaviour
     public string type;
     Rigidbody2D rigid;
 
-    void Start()
+    void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        rigid.velocity = Vector2.down * 3f;
+        rigid = GetComponent<Rigidbody2D>(); 
+    }
+
+    void OnEnable()
+    {
+        rigid.velocity = Vector2.down * 1.5f;
     }
 }

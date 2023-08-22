@@ -151,3 +151,4 @@ MonoBehaviour:
   itemPower: {fileID: 3978026278309552893, guid: 0c1557c99c4b823428bd0034636b07aa, type: 3}
   itemBoom: {fileID: 465381887408860081, guid: bac92df02d7e14d47b2fd727435f4d80, type: 3}
   player: {fileID: 0}
+  objManager: {fileID: 0}
