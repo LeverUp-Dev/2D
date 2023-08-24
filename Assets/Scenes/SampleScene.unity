@@ -2604,6 +2604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19762f9c3aaf1640aff1b9be197c648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBPrefab: {fileID: 6850683244558731880, guid: d4a3bd86c8d01944d88f0fceec65c1a6, type: 3}
   enemyLPrefab: {fileID: 4629572508320789302, guid: a94bd3ac9a3349243a2b62cfbc0b0566, type: 3}
   enemyMPrefab: {fileID: 8965015030804921365, guid: 95e4a056a9c6a3247b06af2466fcfa99, type: 3}
   enemySPrefab: {fileID: 8612080350838802868, guid: d367a0314373a334c9f7f52f6af15839, type: 3}
@@ -2615,6 +2616,8 @@ MonoBehaviour:
   bulletEnemyAPrefab: {fileID: 5565462762865260653, guid: 975eac0179826784d8ee16aaec468c56, type: 3}
   bulletEnemyBPrefab: {fileID: 5565462762865260653, guid: e5e3437667237a6499bd2184410a650a, type: 3}
   bulletFollowerPrefab: {fileID: 1325677206996470780, guid: f23409aec700c15428fed3df12e4bab6, type: 3}
+  bulletBossAPrefab: {fileID: 5565462762865260653, guid: 7021deb203df44748b7b13787af0ec60, type: 3}
+  bulletBossBPrefab: {fileID: 5565462762865260653, guid: 59e4f3fa0c7e7e14ab1b8f0fb84958eb, type: 3}
 --- !u!1 &1399893131
 GameObject:
   m_ObjectHideFlags: 0
