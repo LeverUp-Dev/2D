@@ -18,6 +18,7 @@ public class ObjManager : MonoBehaviour
     public GameObject bulletFollowerPrefab;
     public GameObject bulletBossAPrefab;
     public GameObject bulletBossBPrefab;
+    public GameObject explosionPrefab;
 
     GameObject[] enemyB;
     GameObject[] enemyL;
@@ -35,6 +36,7 @@ public class ObjManager : MonoBehaviour
     GameObject[] bulletFollower;
     GameObject[] bulletBossA;
     GameObject[] bulletBossB;
+    GameObject[] explosion;
 
     GameObject[] targetPool;
 
@@ -56,6 +58,7 @@ public class ObjManager : MonoBehaviour
         bulletFollower = new GameObject[100];
         bulletBossA = new GameObject[100];
         bulletBossB = new GameObject[500];
+        explosion = new GameObject[20];
 
         Generate();
     }
@@ -121,6 +124,10 @@ public class ObjManager : MonoBehaviour
             bulletBossB[i] = Instantiate(bulletBossBPrefab);
             bulletBossB[i].SetActive(false);
         }
+        for (int i = 0; i < explosion.Length; i++) {
+            explosion[i] = Instantiate(explosionPrefab);
+            explosion[i].SetActive(false);
+        }
     }
 
     public GameObject MakeObj(string type)
@@ -168,6 +175,9 @@ public class ObjManager : MonoBehaviour
                 break;
             case "BulletBossB":
                 targetPool = bulletBossB;
+                break;
+            case "Explosion":
+                targetPool = explosion;
                 break;
         }
 
@@ -226,6 +236,9 @@ public class ObjManager : MonoBehaviour
                 break;
             case "BulletBossB":
                 targetPool = bulletBossB;
+                break;
+            case "Explosion":
+                targetPool = explosion;
                 break;
         }
 
